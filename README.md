@@ -99,12 +99,49 @@ project, please check the [project management guide](./PROJECT.md) to get starte
 
 - **AI-powered full-stack web development** for **NodeJS based applications** directly in your browser.
 - **Support for multiple LLMs** with an extensible architecture to integrate additional models.
+- **Multi-Agent System** with specialized agents for different development tasks (UI/UX, Performance, Testing, etc.).
 - **Attach images to prompts** for better contextual understanding.
 - **Integrated terminal** to view output of LLM-run commands.
 - **Revert code to earlier versions** for easier debugging and quicker changes.
 - **Download projects as ZIP** for easy portability Sync to a folder on the host.
 - **Integration-ready Docker support** for a hassle-free setup.
 - **Deploy** directly to **Netlify**
+
+## Multi-Agent System (Phase 2)
+
+Bolt.diy now includes a sophisticated multi-agent system that provides specialized assistance for different aspects of development:
+
+### Available Agents
+
+| Agent | Description | Tags |
+|-------|-------------|------|
+| **UIUXAgent** | Improves visual design consistency, UX patterns, and accessibility standards | `ui`, `ux`, `design`, `accessibility` |
+| **PerformanceAgent** | Optimizes code efficiency, bundle size, and runtime performance | `performance`, `optimization`, `bundle` |
+| **AccessibilityAgent** | Checks ARIA compliance, color contrast, keyboard navigation | `accessibility`, `a11y`, `wcag` |
+| **TestingAgent** | Scaffolds unit tests, E2E tests, and testing infrastructure | `testing`, `jest`, `playwright`, `vitest` |
+| **DocumentationAgent** | Generates README files, inline comments, API docs | `documentation`, `readme`, `api-docs` |
+| **DataAgent** | Handles database schema design, CRUD API scaffolding | `database`, `schema`, `api`, `crud` |
+| **DeploymentAgent** | Manages Docker/CI-CD config generation and deployment | `deployment`, `docker`, `ci-cd`, `devops` |
+| **RefactoringAgent** | Splits large components, enforces naming conventions | `refactoring`, `code-quality`, `organization` |
+
+### Agent Commands
+
+```bash
+# List all available agents
+pnpm run list-agents
+
+# List agents in JSON format
+pnpm run list-agents --json
+```
+
+### Agent Features
+
+- **Plan-Execute-Review Lifecycle**: Each agent follows a structured approach
+- **Dynamic Registration**: Agents can be enabled/disabled at runtime
+- **Priority-based Execution**: Higher priority agents run first
+- **Output Chaining**: Agents can use outputs from other agents
+- **Comprehensive Logging**: All agent activities are logged to `.bolt/logs/`
+- **Extensible Architecture**: Easy to add new specialized agents
 
 ## Setup
 
