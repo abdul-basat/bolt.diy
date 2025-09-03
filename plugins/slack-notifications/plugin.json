@@ -1,0 +1,51 @@
+{
+  "name": "slack-notifications",
+  "version": "1.0.0",
+  "description": "Send build and deployment notifications to Slack",
+  "author": "Bolt.diy Team",
+  "enabled": false,
+  "hooks": [
+    {
+      "event": "build:started",
+      "handler": "handleBuildStarted",
+      "priority": 10,
+      "async": true
+    },
+    {
+      "event": "build:completed",
+      "handler": "handleBuildCompleted",
+      "priority": 10,
+      "async": true
+    },
+    {
+      "event": "build:failed",
+      "handler": "handleBuildFailed",
+      "priority": 10,
+      "async": true
+    },
+    {
+      "event": "deploy:started",
+      "handler": "handleDeployStarted",
+      "priority": 10,
+      "async": true
+    },
+    {
+      "event": "deploy:completed",
+      "handler": "handleDeployCompleted",
+      "priority": 10,
+      "async": true
+    },
+    {
+      "event": "deploy:failed",
+      "handler": "handleDeployFailed",
+      "priority": 10,
+      "async": true
+    }
+  ],
+  "config": {
+    "webhookUrl": "",
+    "channel": "#builds",
+    "username": "Bolt.diy Bot",
+    "iconEmoji": ":robot_face:"
+  }
+}
