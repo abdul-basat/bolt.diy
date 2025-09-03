@@ -968,9 +968,9 @@ npm audit fix
     return tree + (paths.length > 20 ? '\n  ...' : '');
   }
 
-  private extractApiEndpoints(projectFiles: Record<string, string>): any[] {
+  private extractApiEndpoints(projectFiles: Record<string, string>): Array<{ method: string; path: string; description: string }> {
     // Simple endpoint extraction - could be enhanced
-    const endpoints = [];
+    const endpoints: Array<{ method: string; path: string; description: string }> = [];
     
     for (const [path, content] of Object.entries(projectFiles)) {
       if (path.includes('api') || path.includes('route')) {
@@ -991,7 +991,7 @@ npm audit fix
     return endpoints.slice(0, 10); // Limit to prevent overly long docs
   }
 
-  private formatEndpointDocumentation(endpoint: any): string {
+  private formatEndpointDocumentation(endpoint: { method: string; path: string; description: string }): string {
     return `### ${endpoint.method} ${endpoint.path}
 ${endpoint.description}
 

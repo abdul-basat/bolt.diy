@@ -101,7 +101,14 @@ export class RefactoringAgent extends BaseAgent {
   }
 
   private analyzeCodeForRefactoring(projectFiles: Record<string, string>) {
-    const analysis = {
+    const analysis: {
+      largeFiles: Array<{ path: string; lines: number; suggestion: string }>;
+      complexFunctions: Array<{ path: string; name: string; lines: number; suggestion: string }>;
+      namingIssues: Array<{ path: string; type: string; name: string; issue: string; line: number }>;
+      duplicateCode: Array<{ path: string; block: string; occurrences: number; suggestion: string }>;
+      organizationIssues: string[];
+      dependencies: string[];
+    } = {
       largeFiles: [],
       complexFunctions: [],
       namingIssues: [],
@@ -270,25 +277,25 @@ This report identifies refactoring opportunities to improve code maintainability
 
 #### Large Files (${analysis.largeFiles.length})
 Files with over 300 lines that should be split:
-${analysis.largeFiles.map(file => 
+${analysis.largeFiles.map((file: any) => 
   `- **${file.path}** (${file.lines} lines): ${file.suggestion}`
 ).join('\n')}
 
 #### Complex Functions (${analysis.complexFunctions.length})
 Functions with over 50 lines that need refactoring:
-${analysis.complexFunctions.map(func => 
+${analysis.complexFunctions.map((func: any) => 
   `- **${func.name}** in ${func.path} (${func.lines} lines): ${func.suggestion}`
 ).join('\n')}
 
 ### 🟡 Medium Priority Issues
 
 #### Naming Convention Violations (${analysis.namingIssues.length})
-${analysis.namingIssues.slice(0, 10).map(issue => 
+${analysis.namingIssues.slice(0, 10).map((issue: any) => 
   `- **${issue.name}** (${issue.type}) in ${issue.path}:${issue.line} - ${issue.issue}`
 ).join('\n')}
 
 #### Code Duplication (${analysis.duplicateCode.length})
-${analysis.duplicateCode.map(dup => 
+${analysis.duplicateCode.map((dup: any) => 
   `- **${dup.path}**: ${dup.block} (${dup.occurrences} occurrences) - ${dup.suggestion}`
 ).join('\n')}
 

@@ -101,8 +101,8 @@ export class LoggingService {
       }
 
       const content = require('fs').readFileSync(logFile, 'utf-8');
-      const lines = content.trim().split('\n').filter(line => line.trim());
-      return lines.map(line => JSON.parse(line));
+      const lines = content.trim().split('\n').filter((line: string) => line.trim());
+      return lines.map((line: string) => JSON.parse(line));
     } catch (error) {
       console.error('Error reading log file:', error);
       return [];

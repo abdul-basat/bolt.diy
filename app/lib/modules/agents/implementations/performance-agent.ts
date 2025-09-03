@@ -129,7 +129,12 @@ export class PerformanceAgent extends BaseAgent {
   }
 
   private analyzePerformancePatterns(projectFiles: Record<string, string>, structure: any) {
-    const analysis = {
+    const analysis: {
+      codePatterns: string[];
+      bundleIssues: string[];
+      optimizationOpportunities: string[];
+      fileAnalysis: Record<string, any>;
+    } = {
       codePatterns: [],
       bundleIssues: [],
       optimizationOpportunities: [],
@@ -243,10 +248,10 @@ export class PerformanceAgent extends BaseAgent {
    - Optimize critical rendering path
 
 ## Code Patterns Analysis
-${analysis.codePatterns.slice(0, 10).map(pattern => `- ${pattern}`).join('\n')}
+${analysis.codePatterns.slice(0, 10).map((pattern: string) => `- ${pattern}`).join('\n')}
 
 ## Bundle Issues
-${analysis.bundleIssues.slice(0, 10).map(issue => `- ${issue}`).join('\n')}
+${analysis.bundleIssues.slice(0, 10).map((issue: string) => `- ${issue}`).join('\n')}
 
 ## Optimization Recommendations
 
