@@ -24,7 +24,7 @@ import { streamingState } from '~/lib/stores/streaming';
 import { filesToArtifacts } from '~/utils/fileUtils';
 import { supabaseConnection } from '~/lib/stores/supabase';
 import { defaultDesignScheme, type DesignScheme } from '~/types/design-scheme';
-import type { ElementInfo } from '~/components/workbench/Inspector';
+import { ComponentLibraryPanel } from '~/components/workbench/ComponentLibraryPanel';
 import type { TextUIPart, FileUIPart, Attachment } from '@ai-sdk/ui-utils';
 import { useMCPStore } from '~/lib/stores/mcp';
 import type { LlmErrorAlertType } from '~/types/actions';
@@ -84,6 +84,7 @@ export function Chat() {
         transition={toastAnimation}
         autoClose={3000}
       />
+      <ComponentLibraryPanel />
     </>
   );
 }

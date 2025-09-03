@@ -8,6 +8,7 @@ import { DeployButton } from '~/components/deploy/DeployButton';
 import { toast } from 'react-toastify';
 import { classNames } from '~/utils/classNames';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import { toggleComponentLibraryVisibility } from '~/lib/stores/componentLibrary';
 
 interface HeaderActionButtonsProps {
   chatStarted: boolean;
@@ -85,6 +86,20 @@ export function HeaderActionButtons({ chatStarted }: HeaderActionButtonsProps) {
 
       {/* Deploy Button */}
       {shouldShowButtons && <DeployButton />}
+
+      {/* Component Library Button */}
+      {shouldShowButtons && (
+        <div className="flex border border-bolt-elements-borderColor rounded-md overflow-hidden text-sm">
+          <button
+            onClick={() => toggleComponentLibraryVisibility()}
+            className="rounded-md items-center justify-center [&:is(:disabled,.disabled)]:cursor-not-allowed [&:is(:disabled,.disabled)]:opacity-60 px-3 py-1.5 text-xs bg-accent-500 text-white hover:text-bolt-elements-item-contentAccent [&:not(:disabled,.disabled)]:hover:bg-bolt-elements-button-primary-backgroundHover outline-accent-500 flex gap-1.5"
+            title="Component Library"
+          >
+            <div className="text-base">📦</div>
+            <span>Components</span>
+          </button>
+        </div>
+      )}
 
       {/* Bug Report Button */}
       {shouldShowButtons && (

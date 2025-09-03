@@ -27,7 +27,7 @@
     "dockerbuild": "docker build -t bolt-ai:development -t bolt-ai:latest --target bolt-ai-development .",
     "typecheck": "tsc",
     "typegen": "wrangler types",
-    "preview": "pnpm run build && pnpm run start",
+    "preview": "pnpm run build && pnpm run start && echo 'Preview started! For native app development, see README_native.md'",
     "prepare": "husky",
     "clean": "node scripts/clean.js",
     "electron:build:deps": "concurrently \"pnpm electron:build:main\" \"pnpm electron:build:preload\" --kill-others-on-fail",
