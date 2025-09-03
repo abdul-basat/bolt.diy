@@ -46,3 +46,9 @@ docs/instructions/Roadmap.md
 .cursorrules
 *.md
 .qodo
+
+# bolt.diy generated files (excluded by default)
+.bolt/
+# To include generated files in git, add them explicitly:
+# git add -f .bolt/prd/my-project.md
+# git add -f .bolt/diagrams/my-project.mmd

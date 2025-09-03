@@ -342,6 +342,155 @@ Remember to always commit your local changes or stash them before pulling update
 - **`pnpm run typegen`**: Generates TypeScript types using Wrangler.
 - **`pnpm run deploy`**: Deploys the project to Cloudflare Pages.
 - **`pnpm run lint:fix`**: Automatically fixes linting issues.
+- **`pnpm run generate-prd <projectName>`**: Generates a Product Requirements Document.
+- **`pnpm run generate-diagram <projectName>`**: Generates a Mermaid flow diagram.
+- **`pnpm run docs`**: Opens a simple docs viewer for PRD + diagrams.
+
+## 📝 Document Generation
+
+bolt.diy includes powerful agents for generating project documentation and diagrams.
+
+### PRD Generation
+
+Generate comprehensive Product Requirements Documents:
+
+```bash
+# Basic PRD generation
+pnpm run generate-prd my-awesome-app
+
+# Specify output path
+pnpm run generate-prd my-app --path ./projects
+
+# Customize sections
+pnpm run generate-prd my-app --no-risks --no-technical
+```
+
+**Options:**
+- `--path`: Base path for output (default: current directory)
+- `--no-stories`: Exclude user stories section
+- `--no-technical`: Exclude technical notes section
+- `--no-risks`: Exclude risks section
+
+Generated PRD files are saved to `.bolt/prd/<projectName>.md` and include:
+- Project overview and purpose
+- Core and nice-to-have features
+- User stories with acceptance criteria
+- Technical notes and architecture considerations
+- Risk assessment and mitigation strategies
+- Timeline and milestones
+- Success criteria and KPIs
+
+### Flow Diagram Generation
+
+Generate Mermaid.js diagrams to visualize your application logic:
+
+```bash
+# Basic flowchart generation
+pnpm run generate-diagram my-awesome-app
+
+# Generate different diagram types
+pnpm run generate-diagram my-app --type sequence
+pnpm run generate-diagram my-app --type classDiagram
+pnpm run generate-diagram my-app --type stateDiagram
+pnpm run generate-diagram my-app --type entityRelationship
+
+# Generate with SVG preview
+pnpm run generate-diagram my-app --svg
+
+# Use existing PRD file for context
+pnpm run generate-diagram my-app --prd ./.bolt/prd/my-app.md
+
+# Customize flowchart content
+pnpm run generate-diagram my-app --no-userflow --no-dataflow
+```
+
+**Options:**
+- `--type`: Diagram type (flowchart, sequence, classDiagram, stateDiagram, entityRelationship)
+- `--path`: Base path for output (default: current directory)
+- `--svg`: Generate SVG preview (placeholder implementation)
+- `--prd`: Path to PRD file for auto-generation context
+- `--no-userflow`: Exclude user flow in flowchart
+- `--no-dataflow`: Exclude data flow in flowchart
+
+Generated diagram files are saved to `.bolt/diagrams/<projectName>.mmd`.
+
+### Mermaid Syntax Examples
+
+**Flowchart:**
+```mermaid
+flowchart TD
+    A[Start] --> B{Decision}
+    B -->|Yes| C[Action 1]
+    B -->|No| D[Action 2]
+    C --> E[End]
+    D --> E
+```
+
+**Sequence Diagram:**
+```mermaid
+sequenceDiagram
+    participant A as User
+    participant B as System
+    A->>B: Request
+    B-->>A: Response
+```
+
+**Class Diagram:**
+```mermaid
+classDiagram
+    class User {
+        +String name
+        +login()
+        +logout()
+    }
+```
+
+### Document Viewer
+
+Launch a local web server to view your generated documents:
+
+```bash
+# Start docs viewer (default port 3001)
+pnpm run docs
+
+# Specify port and path
+pnpm run docs --port 3002 --path ./my-project
+```
+
+The docs viewer provides:
+- 📄 Formatted display of PRD files
+- 📊 Mermaid diagram previews
+- 🔗 Direct links to online Mermaid editor
+- 📥 Download functionality
+- 🎨 Clean, responsive interface
+
+### Orchestration & Chaining
+
+Generate both PRD and diagrams in sequence:
+
+```bash
+# Generate PRD first
+pnpm run generate-prd my-app
+
+# Then generate diagram using the PRD context
+pnpm run generate-diagram my-app --prd ./.bolt/prd/my-app.md
+```
+
+The agents are designed to work together - diagrams can automatically incorporate information from PRD files when available.
+
+### Generated Files Location
+
+By default, generated files are saved to:
+- **PRD files**: `.bolt/prd/<projectName>.md`
+- **Diagrams**: `.bolt/diagrams/<projectName>.mmd`
+
+These directories are excluded from git by default. To include generated files in version control:
+
+```bash
+# Add specific files to git
+git add -f .bolt/prd/my-project.md
+git add -f .bolt/diagrams/my-project.mmd
+```
 
 ---
 
