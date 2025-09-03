@@ -95,6 +95,65 @@ project, please check the [project management guide](./PROJECT.md) to get starte
 - ✅ Popout Window for Web Container(@stijnus)
 - ✅ Ability to change Popout window size (@stijnus)
 
+## Phase 1: Foundation Setup 🚀
+
+bolt.diy has been enhanced with a modular agent system and improved developer experience:
+
+### New Features
+
+- **🤖 Modular Agent System**: Pluggable agent architecture with specialized roles
+  - **PlannerAgent**: Analyzes requirements and creates structured execution plans
+  - **FrontendDevAgent**: Handles UI/UX implementation and React component development
+  - **DebuggerAgent**: Identifies and fixes bugs with intelligent error analysis
+  - **SecurityAgent**: Performs security assessments and implements security measures
+
+- **🎯 Agent Orchestration**: Centralized coordination system for managing multiple agents
+  - Sequential and parallel agent execution
+  - Context passing between agents
+  - Session management and monitoring
+  - Event-driven architecture
+
+- **⚙️ Enhanced Configuration Management**: Secure handling of environment variables and settings
+  - Secure API key management
+  - Configuration validation
+  - Client-safe environment variable filtering
+  - Runtime configuration updates
+
+- **🛠️ Improved Developer Experience**:
+  - **Setup script**: Run `pnpm setup` to validate your environment
+  - **Better error messages**: Clear feedback for missing dependencies or configuration
+  - **Environment validation**: Automatic checking of Node.js version and dependencies
+
+### Quick Start with Agent System
+
+1. **Setup your environment**:
+   ```bash
+   pnpm setup
+   ```
+
+2. **Configure API keys** in `.env.local`:
+   ```bash
+   # Add your preferred LLM provider API key
+   ANTHROPIC_API_KEY=your_key_here
+   OPENAI_API_KEY=your_key_here
+   ```
+
+3. **Start development**:
+   ```bash
+   pnpm dev
+   ```
+
+### Agent Workflows
+
+The new agent system supports several pre-configured workflows:
+
+- **Standard Development**: Planning → Frontend Development → Security Review
+- **Debugging Workflow**: Error Analysis → Bug Fixing → Security Validation
+- **Security-Focused**: Security Assessment → Hardening → Compliance Check
+- **Comprehensive**: Full workflow with all agent types
+
+These workflows can be executed programmatically through the orchestration system or triggered through the enhanced UI (coming in Phase 2).
+
 ## Features
 
 - **AI-powered full-stack web development** for **NodeJS based applications** directly in your browser.
