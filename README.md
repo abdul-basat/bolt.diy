@@ -361,7 +361,162 @@ Explore upcoming features and priorities on our [Roadmap](https://roadmap.sh/r/o
 
 For answers to common questions, issues, and to see a list of recommended models, visit our [FAQ Page](FAQ.md).
 
+---
 
+## Phase 6: AI Memory & External Tool Integrations
+
+Bolt.diy now includes advanced features for persistent memory, GitHub synchronization, database integration, and external tool hooks.
+
+### 🧠 AI Memory System
+
+The memory system allows Bolt to remember context across sessions, including project decisions, user preferences, and agent outputs.
+
+**Features:**
+- **Persistent Memory**: Store key decisions and context that survives browser sessions
+- **Session Memory**: Temporary memory for current work session
+- **Search & Filter**: Find specific memories by type, scope, or content
+- **Automatic Cleanup**: Configurable retention policies
+
+**Terminal Commands:**
+```bash
+show-memory                    # List all memory items
+show-memory --type=decision    # Show only decisions
+show-memory --scope=project    # Show only project-wide items
+clear-memory                   # Clear all memory
+clear-memory --scope=session   # Clear only session memory
+```
+
+### 🐙 GitHub Sync Agent
+
+Automatically commit and sync your changes to GitHub with built-in safety checks.
+
+**Features:**
+- **Auto Commit**: Automatically commit code changes
+- **Pull Request Creation**: Optionally create PRs for changes
+- **Safety Checks**: Prevent committing secrets, large files, or sensitive data
+- **Branch Management**: Create and manage feature branches
+
+**Setup:**
+1. Add your GitHub token to `.env.local`:
+   ```
+   VITE_GITHUB_ACCESS_TOKEN=your_github_token
+   ```
+2. Enable in `bolt.config.json`:
+   ```json
+   {
+     "github": {
+       "enabled": true,
+       "autoCommit": false,
+       "autoPR": false,
+       "safetyChecks": true
+     }
+   }
+   ```
+
+### 💾 Database & API Integration
+
+Generate database schemas and scaffold APIs with CRUD operations.
+
+**Features:**
+- **Schema Generation**: Create PostgreSQL or SQLite schemas
+- **API Scaffolding**: Generate REST or GraphQL APIs
+- **Migration Support**: Database migration management
+- **Multiple Backends**: Support for PostgreSQL and SQLite
+
+**Terminal Commands:**
+```bash
+init-db postgres              # Initialize PostgreSQL schema
+init-db sqlite               # Initialize SQLite schema
+connect-api https://api.example.com/openapi.json  # Import API schema
+```
+
+### 🔌 Plugin System
+
+Extend Bolt with custom integrations and external tool support.
+
+**Available Plugins:**
+- **Slack Notifications**: Send build/deploy notifications to Slack
+- **Discord Integration**: Post updates to Discord channels
+- **Jira Integration**: Auto-generate tickets from PRDs
+- **Trello Integration**: Create cards from project tasks
+- **Postman Integration**: Export API collections
+
+**Creating Custom Plugins:**
+1. Create a plugin directory in `plugins/your-plugin/`
+2. Add `plugin.json` with metadata and hooks
+3. Implement handlers in `index.js`
+4. Enable in `bolt.config.json`
+
+### ⚙️ Configuration
+
+Configure all features in `bolt.config.json`:
+
+```json
+{
+  "memory": {
+    "enabled": true,
+    "storageBackend": "indexeddb",
+    "maxItems": 1000,
+    "retentionDays": 30
+  },
+  "github": {
+    "enabled": false,
+    "autoCommit": false,
+    "autoPR": false,
+    "safetyChecks": true
+  },
+  "database": {
+    "enabled": false,
+    "defaultType": "sqlite",
+    "autoMigrate": true
+  },
+  "plugins": {
+    "enabled": true,
+    "directory": "plugins",
+    "autoLoad": true
+  },
+  "integrations": {
+    "slack": { "enabled": false },
+    "discord": { "enabled": false }
+  }
+}
+```
+
+### 🚀 Quick Start
+
+1. **Install and Setup:**
+   ```bash
+   pnpm install
+   cp .env.example .env.local
+   # Add your API keys and tokens
+   ```
+
+2. **Configure Integrations:**
+   ```bash
+   # Edit bolt.config.json to enable desired features
+   # Add environment variables for external services
+   ```
+
+3. **Sync Everything:**
+   ```bash
+   pnpm run sync
+   # This command syncs memory, GitHub, database, and loads plugins
+   ```
+
+4. **Start Development:**
+   ```bash
+   pnpm run dev
+   ```
+
+### 📚 Documentation
+
+- [Memory System Guide](./docs/memory.md)
+- [GitHub Integration Setup](./docs/github.md)
+- [Database Integration Guide](./docs/database.md)
+- [Plugin Development Guide](./docs/plugins.md)
+- [API Reference](./docs/api.md)
+
+---
 # Licensing
 **Who needs a commercial WebContainer API license?**
 
